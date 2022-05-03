@@ -118,3 +118,11 @@ int SeqListFind(SeqList* ps, SLDataType x)
 	}
 	return -1;
 }
+//modify
+void SLModify(SeqList* ps, int pos, SLDataType x)
+{
+	assert(ps);
+	assert(pos >= 0 && pos < ps->size);
+
+	ps->a[pos] = x;
+}
