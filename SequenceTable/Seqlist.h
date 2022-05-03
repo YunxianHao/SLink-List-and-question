@@ -32,3 +32,5 @@ void SeqListInsert(SeqList* ps, int pos, SLDataType x);
 void SeqListErase(SeqList* ps, size_t pos);
 //search
 int SeqListFind(SeqList* ps, SLDataType x);
+//modify
+void SLModify(SeqList* ps, int pos, SLDataType x);
