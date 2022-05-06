@@ -1,0 +1,24 @@
+//Method of using fast and slow pointers
+//First move the fast pointer forward K steps，then move the slow and fast pointer forward together
+//when the fast poiner is NULL, return the slow pointer.
+struct ListNode* FindKthToTail(struct ListNode* pListHead, int k ) {
+    // write code here
+    struct ListNode* slow = pListHead;
+    struct ListNode* fast = pListHead;
+    int count = 0;int m = k;
+    if(k==0)
+        return NULL;
+    while(k-- && fast!=NULL)
+    {
+      fast = fast->next;
+        count++;
+    }
+    if(m>count)
+        return NULL;
+    while(fast != NULL)
+    {
+        slow = slow->next;
+        fast =  fast->next;
+    }
+    return slow;
+}
