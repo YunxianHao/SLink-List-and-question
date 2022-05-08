@@ -1,0 +1,37 @@
+//Question: Write code to divide the linked list into two parts based on the given value x
+//and all nodes less than X are arranged before nodes greater than or equal to X
+//Code:
+class Partition {
+public:
+    ListNode* partition(ListNode* pHead, int x) {
+        // write code here
+        if(pHead == NULL)
+            return NULL;
+        struct ListNode* lesshead,*lesstail,*greaterhead,*greatertail;
+        //Do not reverse the order when allocating space. Lesshead corresponds to lesstail...
+        lesshead = lesstail = (struct ListNode*)malloc(sizeof(struct ListNode));
+         greaterhead = greatertail = (struct ListNode*)malloc(sizeof(struct ListNode));
+        struct ListNode* cur = pHead;
+        while(cur)
+        {
+            if(cur->val < x)
+            {
+                lesstail->next = cur;
+                lesstail = lesstail->next;
+            }
+            else
+            {
+                greatertail->next = cur;
+                greatertail = greatertail->next;
+            }
+            cur = cur->next;
+        }
+        //connect
+        lesstail->next = greaterhead->next;
+        greatertail->next = NULL;
+        pHead = lesshead->next;
+        free(lesshead);
+        free(greaterhead);
+        return pHead;
+    }
+};
