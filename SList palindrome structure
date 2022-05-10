@@ -1,0 +1,54 @@
+//First get the middle node,then reverse the data after the middle node,finally,head pointer and middle pointer move forward at the same time.
+Code:
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};*/
+struct ListNode* reverseList(struct ListNode* head){
+struct ListNode* newhead = NULL;
+struct ListNode* cur = head;
+while(cur)
+{
+    struct ListNode* next = cur->next;
+
+
+    cur->next = newhead;
+    newhead = cur;
+
+
+    cur = next;
+}
+return newhead;
+}
+struct ListNode* middleNode(struct ListNode* head){
+struct ListNode* slow = head;
+struct ListNode* fast = head;
+while(fast && fast->next)
+{
+    slow = slow->next;
+    fast = fast->next->next;
+}
+return slow;
+}
+class PalindromeList {
+public:
+    bool chkPalindrome(ListNode* A) {
+        // write code here
+        struct ListNode* mid = middleNode(A);
+        struct ListNode* end = reverseList(mid);
+        struct ListNode* beg = A;
+        while(end && beg)
+        {
+            if(end->val == beg->val);
+            else
+            {
+                return false;
+            }
+            end = end->next;
+            beg = beg->next;
+        }
+        return true;
+    }
+};
