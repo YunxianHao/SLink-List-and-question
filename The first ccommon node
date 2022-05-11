@@ -1,0 +1,38 @@
+struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) {
+    int lenA = 0; int lenB = 0;
+    struct ListNode* curA = headA,*curB = headB;
+    while(curA)
+    {
+        lenA++;
+        curA = curA->next;
+    }
+    while(curB)
+    {
+        lenB++;
+        curB = curB->next;
+    }
+    int gap = abs(lenA - lenB);
+    struct ListNode* longlist = headA,*shortlist = headB;
+    if(lenA < lenB)
+    {
+        longlist = headB;
+        shortlist = headA;
+    }
+    while(gap--)
+    {
+        longlist = longlist->next;
+    }
+    while(longlist)
+    {
+        if(longlist == shortlist)
+        {
+            return longlist;
+        }
+        else
+        {
+        longlist = longlist->next;
+        shortlist = shortlist->next;
+        }
+    }
+    return NULL;
+}
