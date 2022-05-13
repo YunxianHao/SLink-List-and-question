@@ -1,0 +1,32 @@
+Question： Leetcode：142
+//Idea:First find their meeting point in the ring, 
+//and then the distance from the meeting point to the entering point is equal to the distance from the starting point to the entering point.
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode *detectCycle(struct ListNode *head) {
+    struct ListNode* slow = head;
+    struct ListNode* fast = head;
+    while(fast && fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if(slow == fast)
+        {
+            struct ListNode* meet = slow;
+            struct ListNode* strat = head;
+            while(strat != meet)
+            {
+                strat = strat->next;
+                meet = meet->next;
+            }
+            return meet;
+        }
+    }
+    return NULL;
+}
