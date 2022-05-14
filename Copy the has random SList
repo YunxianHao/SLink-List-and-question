@@ -1,0 +1,54 @@
+//Leetcode 138:
+//Coding:
+struct Node* copyRandomList(struct Node* head) {
+	//1. Copy the original node and connect it to the back of the original node
+    struct Node* cur = head;
+    while(cur)
+    {
+        struct Node* next = cur->next;
+        struct Node* copy = (struct Node*)malloc(sizeof(struct Node));
+        //Insert copy node
+        copy->val = cur->val;
+        cur->next = copy;
+        copy->next = next;
+        //Iteration
+        cur = next;
+    }
+    //2. Place the random of the copy node
+    cur = head;
+        while(cur)
+        {
+            struct Node* copy = cur->next;
+            if(cur->random != NULL)
+                copy->random = cur->random->next;
+            else
+                copy->random = NULL;
+ 
+            cur = copy->next;
+        }
+   //3.3. De copy node, link copy node
+        struct Node* copyHead = NULL, *copyTail = NULL;
+        cur = head;
+        while(cur)
+        {
+            struct Node* copy = cur->next;
+            struct Node* next = copy->next;
+ 
+            // Copy remove the tail insert
+            if(copyTail == NULL)
+            {
+                copyHead = copyTail = copy;
+            }
+            else
+            {   
+                copyTail->next = copy;
+                copyTail = copy;
+            }
+ 
+            cur->next = next;
+ 
+            cur = next;
+        }
+ 
+        return copyHead;
+}
