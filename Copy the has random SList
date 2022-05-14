@@ -1,5 +1,14 @@
 //Leetcode 138:
 //Coding:
+//Give you a linked list with a length of N. each node contains an additional random pointer random, which can point to any node or empty node in the linked list.
+//Construct a deep copy of this linked list. The deep copy should consist of exactly n new nodes, in which the value of each new node is set to the value of its corresponding original node. The next pointer and random pointer of the new node should also point to the new node in the replication linked list, and these pointers in the original linked list and replication linked list can represent the same linked list state. The pointer in the copy linked list should not point to the node in the original linked list.
+//For example, if there are two nodes X and Y in the original linked list, where x.random -- > y. Then the corresponding two nodes X and Y in the copy linked list also have x.random -- > y.
+//Returns the header node of the copy linked list.
+//Use a linked list composed of n # nodes to represent the linked list in input / output. Each node is represented by a [Val, random_index]:
+//Val: one represents node Integer of val.
+//random_ Index: the node index pointed by the random pointer (range from # 0 # to # n-1); Null if it does not point to any node.
+//Your code only accepts the head node of the original linked list as the incoming parameter.
+
 struct Node* copyRandomList(struct Node* head) {
 	//1. Copy the original node and connect it to the back of the original node
     struct Node* cur = head;
