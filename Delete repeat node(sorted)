@@ -1,0 +1,29 @@
+//Leetcode 83:
+//Given the head of a sorted linked list, delete all duplicate elements so that each element appears only once. Returns the sorted linked list.
+Code:
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* deleteDuplicates(struct ListNode* head){
+    struct ListNode* cur = head;
+    if(head == NULL)
+    return NULL;
+    while(cur->next)
+    {
+        if(cur->val == cur->next->val)
+        {
+            cur->next = cur->next->next;
+        }
+        else
+        {
+            cur = cur->next;
+        }
+    }
+    return head;
+}
