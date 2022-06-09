@@ -1,0 +1,43 @@
+struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) {
+//First, calculate the length of the two linked lists respectively
+//Find out the difference between them, and then make the starting point of the long linked list the same as that of the short linked list
+//Traverse at the same time, return the same, otherwise return null
+    int lenA = 0;int lenB = 0;
+    struct ListNode* curA = headA;
+    struct ListNode* curB = headB;
+    while(curA)
+    {
+        lenA++;
+        curA = curA->next;
+    }
+    while(curB)
+    {
+        lenB++;
+        curB = curB->next;
+    }
+    int gap = abs(lenA - lenB);
+    struct ListNode* shortlist = headA;
+    struct ListNode* longlist = headB;
+    if(lenA > lenB)
+    {
+        shortlist = headB;
+        longlist = headA;
+    }
+    while(gap--)
+    {
+        longlist = longlist->next;
+    }
+    while(shortlist)
+    {
+        if(shortlist == longlist)
+        {
+            return shortlist;
+        }
+        else
+        {
+            shortlist = shortlist->next;
+            longlist = longlist->next;
+        }
+    }
+    return NULL;
+}
