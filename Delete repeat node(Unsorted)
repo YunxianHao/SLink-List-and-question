@@ -1,0 +1,23 @@
+//Leetcode 
+//Write code to remove duplicate nodes from the unordered linked list. Keep the first node
+Code:
+struct ListNode* removeDuplicateNodes(struct ListNode* head){
+  struct ListNode* cur = head;
+  while(cur)
+  {
+      struct ListNode* cur2 = cur;
+      while(cur2->next)
+      {
+          if(cur2->next->val == cur->val)
+          {
+              cur2->next = cur2->next->next;
+          }
+          else
+          {
+             cur2 = cur2->next;
+          }
+      }
+      cur = cur->next;
+  }
+  return head;
+}
