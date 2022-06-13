@@ -1,0 +1,34 @@
+//Leetcode：82
+
+Given the head of a sorted linked list, delete all nodes with duplicate numbers in the original linked list, leaving only different numbers. Returns the sorted linked list.
+
+Code：
+struct ListNode* deleteDuplicates(struct ListNode* head){
+    struct ListNode* newhead = (struct ListNode*)malloc(sizeof(struct ListNode));
+    newhead->next = head;
+    struct ListNode* cur = newhead;
+    while(cur->next && cur->next->next)
+    {
+        if(cur->next->val != cur->next->next->val)
+        {
+            cur = cur->next;
+        }
+        else
+        {
+            int x = cur->next->val;
+            while(cur->next && cur->next->next)
+            {
+                if(cur->next->next->val == x)
+                {
+                    cur->next = cur->next->next;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            cur->next = cur->next->next;
+        }
+    }
+    return newhead->next;
+}
