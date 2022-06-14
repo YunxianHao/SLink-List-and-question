@@ -1,0 +1,13 @@
+//Leetcode：1290
+//Give you a single linked list reference node head. The value of each node in the linked list is either 0 or 1. It is known that this linked list is a binary representation of an integer number.
+//Please return the decimal value of the number represented by the linked list
+Code:
+int getDecimalValue(struct ListNode* head){
+    int ans[31];int sum = 0;
+    while(head)
+    {
+        sum = sum*2 + head->val;
+        head = head->next;
+    }
+    return sum;
+}
