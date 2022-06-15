@@ -1,0 +1,25 @@
+//Leetcode 141：
+//Give you a head node of the linked list to judge whether there are links in the linked list.
+If there is a node in the linked list that can be reached again by continuously tracking the next pointer, there is a ring in the linked list. In order to represent the rings in a given linked list, the evaluation system internally uses the integer POS to represent the position where the end of the linked list is connected to the linked list (the index starts from 0). Note: POS is not passed as a parameter. Only to identify the actual situation of the linked list.
+Returns true if there are rings in the linked list. Otherwise, false is returned
+
+Code:
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+bool hasCycle(struct ListNode *head) {
+    struct ListNode* slow = head;
+    struct ListNode* fast = head;
+    while(fast && fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast)
+        return true;
+    }
+    return false;
+}
