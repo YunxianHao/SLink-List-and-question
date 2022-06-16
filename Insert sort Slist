@@ -1,0 +1,54 @@
+//Leetcode 147 ：
+// Give the header of a linked list to the order, use insert sort to sort the linked list, and return the header of the sorted linked list.
+To insert a sorting algorithm:
+Insert sorting is iterative, moving only one element at a time until all elements can form an ordered output list.
+In each iteration, insert sorting only removes an element to be sorted from the input data, finds its appropriate position in the sequence, and inserts it.
+Repeat until all input data is inserted.
+The following is a graphical example of an insert sort algorithm. A partially sorted list (black) initially contains only the first element in the list. At each iteration, an element (red) is deleted from the input data and inserted in place into the sorted list.
+Insert and sort the linked list.
+
+Code:
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* insertionSortList(struct ListNode* head){
+    if(head == NULL)
+    return head;
+    struct ListNode* newhead = (struct ListNode*)malloc(sizeof(struct ListNode));
+    newhead->next = head;
+    struct ListNode* sortedlist = head;
+    struct ListNode* cur = sortedlist->next;
+    while(cur)
+    {
+        if(cur->val >= sortedlist->val)
+        {
+            sortedlist = sortedlist->next;
+        }
+        else
+        {
+            struct ListNode* prev = newhead;
+            while(1)
+            {
+                if(prev->next->val >= cur->val)
+                {
+                    sortedlist->next = cur->next;
+                    cur->next = prev->next;
+                    prev->next = cur;
+                    break;
+                }
+                else
+                {
+                    prev = prev->next;
+                }
+            }
+        }
+        cur = sortedlist->next;
+    }
+    return newhead->next;
+}
