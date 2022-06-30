@@ -11,3 +11,4 @@ int getDecimalValue(struct ListNode* head){
     }
     return sum;
 }
+ 
